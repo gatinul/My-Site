@@ -1,0 +1,8 @@
+{
+  "esversion":6,
+  "undef":true,
+  "unused":false,
+  "node":true,
+  "lastsemic": true,
+  "asi":true
+}
