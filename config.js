@@ -3,17 +3,19 @@
 
 let config;
 
-// if(process.env.NODE_ENV == 'development'){
-//      config = {
-//         database: {
-//             DATABASE: 'Koa',
-//             USERNAME: 'root',
-//             PASSWORD: 'xiangyu',
-//             PORT: '3306',
-//             HOST: '127.0.0.1'
-//         }
-//     }
-//   }else{
+console.log(process.env.NODE_ENV)
+
+if(process.env.NODE_ENV == 'development'){
+     config = {
+        database: {
+            DATABASE: 'Koa',
+            USERNAME: 'root',
+            PASSWORD: 'xiangyu',
+            PORT: '3306',
+            HOST: '127.0.0.1'
+        }
+    }
+  }else{
      config = {  
         database: {
             DATABASE: 'Koa',
@@ -23,6 +25,6 @@ let config;
             HOST: '59.110.233.80'
         }
     }
-//   }
+  }
 
 module.exports = config

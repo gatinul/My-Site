@@ -16,7 +16,7 @@ const user = {
      */
     async isExist(options) {
         let _sql = `
-            SELECT * FROM USER 
+            SELECT * FROM user 
             WHERE email="${options.email}" or name="${options.name}"`
         let result = await db.query(_sql)
         if (Array.isArray(result) && result.length > 0) {
@@ -32,7 +32,7 @@ const user = {
      */
     async canLogin(options){
         let _sql = `
-            SELECT * FROM USER
+            SELECT * FROM user
             WHERE NAME = "${options.name}" and PASSWORD = "${options.password}"
         `
         let result = await db.query(_sql)
