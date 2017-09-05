@@ -4,7 +4,7 @@
   "description": "",
   "main": "static.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "dev": "webpack --config ./webpack.dev.config.js && pm2 restart static.js",
     "build": "webpack --config ./webpack.prod.config.js && export NODE_ENV=production && pm2 restart static.js",
     "rxjs": "webpack --config ./webpack.base.config.js"
@@ -18,6 +18,7 @@
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-polyfill": "^6.23.0",
     "busboy": "^0.2.14",
+    "chai": "^4.1.2",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-logger": "^3.0.1",
