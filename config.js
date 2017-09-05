@@ -1,10 +1,10 @@
 
 
 
-
+let config;
 
 if(process.env.NODE_ENV == 'development'){
-    let config = {
+     config = {
         database: {
             DATABASE: 'Koa',
             USERNAME: 'root',
@@ -14,7 +14,7 @@ if(process.env.NODE_ENV == 'development'){
         }
     }
   }else{
-    let config = {  
+     config = {  
         database: {
             DATABASE: 'Koa',
             USERNAME: 'root',
@@ -24,4 +24,5 @@ if(process.env.NODE_ENV == 'development'){
         }
     }
   }
+
 module.exports = config
