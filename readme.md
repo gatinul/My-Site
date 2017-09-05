@@ -1,4 +1,5 @@
-### 项目管理平台
+### React&Koa 网站
+一个用 React&Koa 编写的个人网站，目前有登录，注册功能。主页面正在更新中..
 
 [![Build Status](https://www.travis-ci.org/gatinul/My-Site.svg?branch=master)](https://travis-ci.org/gatinul/My-Site)
 
