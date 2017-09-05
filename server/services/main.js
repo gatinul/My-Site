@@ -6,6 +6,7 @@ const user = {
      * @param {object} formData 
      */
     validatorSignUp(formData) {
+        console.log('进入校验')
         let result = {
             success: false,
             message: '',
@@ -33,6 +34,7 @@ const user = {
      * @param {object} formData 
      */
     isExist(formData) {
+        console.log('进入查询是否存在')
         let result = userModel.isExist({
             email: formData.email,
             name: formData.userName
@@ -44,6 +46,7 @@ const user = {
      * @param {object} formData 
      */
     create(formData) {
+        console.log('创建数据')
         let result = userModel.create(formData)
         return result
     },
