@@ -2,7 +2,7 @@ const allConfig = require("./../../config")
 const config = allConfig.database
 const mysql = require("mysql")
 
-console.log(config.HOST,config.DATABASE)
+console.log(`db.config.js:${config.HOST},${config.DATABASE}`)
 
 const pool = mysql.createPool({
     host: config.HOST,

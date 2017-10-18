@@ -3,3 +3,4 @@ node_modules
 .ssh
 sql
 .DS_Store
+config.js
