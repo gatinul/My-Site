@@ -9,4 +9,5 @@ before_install:
 - chmod 600 ~/.ssh/id_rsa
 - echo -e "Host 59.110.233.80\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 after_success:
+- ls -a
 - ssh root@59.110.233.80 'cd  /home/mySite && git pull origin master && npm run build'
