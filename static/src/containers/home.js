@@ -1,16 +1,16 @@
 import React from "react";
-import TimeLinePart from "../components/TimeLine.js";
+import MarkEditPart from "../components/MarkEditor.js";
 import api from "../../api/index.js";
 
 
-class Login extends React.Component {
+class Home extends React.Component {
   render() {
     return (
       <div>
-        <TimeLinePart/>
+        <MarkEditPart/>
       </div>
     );
   }
 }
 
-export default Login;
+export default Home;
