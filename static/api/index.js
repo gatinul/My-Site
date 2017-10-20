@@ -34,5 +34,12 @@ export default {
    */
   uploadFile(param){
     return fetch("blog/uploadFile",param)
+  },
+  /**
+   * 插入 md_tag,配置文件标签关系
+   * @param  {} param
+   */
+  addFileTag(param){
+    return fetch("blog/addFileTag",param)
   }
 };

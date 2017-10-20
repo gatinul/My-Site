@@ -27,16 +27,25 @@ class PostForm extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        const { fileList } = this.state;
+        const formData = new FormData();
+        fileList.forEach((file) => {
+          formData.append('file',file);
+        });
+        console.log(formData.get('file'))
+        api.uploadFile(formData).then(res=> {
+          if(res.success){
+            api.addFileTag({
+              value: values,
+              fileName: formData.get('file').name
+            }).then((res)=>{
+              console.log(res)
+            })
+          }else{
+            console.log(res)
+          }
+        });
       }
-    });
-    const { fileList } = this.state;
-    const formData = new FormData();
-    fileList.forEach((file) => {
-      formData.append('file',file);
-    });
-    console.log(formData.get('file'))
-    api.uploadFile(formData).then(res=> {
-      console.log(res);
     });
   }
 

@@ -1,8 +1,6 @@
 const blogService = require('../services/blogService')
 const time = require('silly-datetime')
-const path = require('path');
-const fs = require('fs');
-const os = require('os');
+
 
 module.exports = {
     /**
@@ -17,18 +15,60 @@ module.exports = {
         message:""
       }
       if(file){
-        const reader = fs.createReadStream(file.path);
-        const stream = fs.createWriteStream(path.join(__dirname, '../../', '/static/', file.name));
-        stream.on('error', (error) => {
-          console.log('writeStream error', error.message);
-        })
-        reader.pipe(stream);
-        console.log('uploading %s -> %s', file.name, stream.path); 
-        result.success = true
-        ctx.body = result
+        try{
+          const newPath = '../../../Blog/app/md/',
+          result = await blogService.uploadFiles(file,newPath)
+          ctx.body = result
+        }catch(error){
+          console.log(error)
+        }
       }else{
         result.message = '文件不能为空'    
+        ctx.body = result
       }
-      ctx.body = result
+    },
+    /**
+     * 添加文件和标签 关系
+     * @param  {object} ctx
+     */
+    async addFileTag(ctx) {
+      let result = {
+        success:false,
+        message:"",
+        remark:""
+      }
+      if ('POST' != ctx.method) return await next();
+      let data = ctx.request.body
+      // 检测用户是否存在
+      let isExist = await blogService.isExist(data)
+      console.log('isExist',isExist)
+      if (isExist) {
+        // 更新blog_tag_md
+        let updateResult = await blogService.updateFileTag({
+          tag_name: data.value.select,
+          md: data.fileName,
+          remark:'更新时间'+ time.format(new Date())
+        })
+        if(updateResult){
+          result.success = true
+          result.remark = `${time.format(new Date())}: 文件< ${data.fileName} >更新`
+        }else{
+          result.message = '更新失败'
+        }
+        ctx.body = result
+      }else{
+        // 插入blog_tag_md
+        let insertResult = await blogService.insertFileTag({
+          tag_name: data.value.select,
+          md: data.fileName,
+          create_time: time.format(new Date())
+        })
+        if (insertResult) {
+          result.success = true
+        } else {
+          result.message = '插入失败'
+        }
+        ctx.body = result
+      }
     }
 }
