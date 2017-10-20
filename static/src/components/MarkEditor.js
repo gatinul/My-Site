@@ -1,10 +1,12 @@
-import { Icon, Row, Col, Input, Button } from  'antd';
+import { Icon, Row, Col, Input, Button, Modal } from  'antd';
 import React, { Component, PropTypes } from "react";
 import ReactDOM from "react-dom";
 import marked from 'marked';
 import highlight from 'highlight.js'
+import ModalForm from '../components/ModalForm.js'
 import "../css/md-common.css";
 import "../css/github.css";
+
 
 marked.setOptions({
     renderer: new marked.Renderer(),
@@ -52,7 +54,9 @@ class WriteMarkDown extends Component {
         previewStyle:showStyle,
         value:'## Hello Gatinul , write now ! \n > 20170613',
         count:0,
-        screenStyle:halfStyle
+        screenStyle:halfStyle,
+        ModalText: 'Content of the modal',
+        visible: false,
     };
     changeEdit = ()=>{
         if(this.state.isEdit) {
@@ -87,7 +91,31 @@ class WriteMarkDown extends Component {
                     + selected.length);
         }
     }
-    render() {
+    showModal =() =>{
+        this.setState({
+            visible:true,
+            ModalText:'Content of the modal'
+        })
+    }
+    handleUploadOk =() =>{
+        this.setState({
+            ModalText: '发布中...',
+            confirmLoading: true,
+        });
+        setTimeout(() => {
+            this.setState({
+                visible: false,
+                confirmLoading: false,
+            });
+        }, 2000);
+    }
+    hideModal =() =>{
+        this.setState({
+            visible:false
+        })
+    }
+    render() {    
+        const {visible,ModalText,previewStyle,screenStyle,value} = this.state;
         return (
             <div>
                 <a><Icon type="arrows-alt" style={{ float:'right',marginRight:'1.5em' }} onClick={this.changeEdit}/></a>
@@ -95,21 +123,29 @@ class WriteMarkDown extends Component {
                     <Col span={11}>
                         <a href="/" style={picStyle}></a>
                         <Button  type="default"  size='large'>发布博客</Button>
-                        <Button ghost type="primary"  size='large' style={{marginLeft:'2em'}}>上传md</Button>
+                        <Button ghost type="primary" onClick={this.showModal} size='large' style={{marginLeft:'2em'}}>上传md</Button>
+                        <Modal title="上传发布"
+                            visible={visible}
+                            onOk={this.handleUploadOk}
+                            onCancel={this.hideModal}
+                            footer={null}
+                            >
+                            <ModalForm />
+                        </Modal>
                         <textarea
-                            style={this.state.previewStyle}
+                            style={previewStyle}
                             className="markdown-textarea"
                             name="mkinput"
                             onChange={this.handleChange}
                             onKeyDown={this.keyDownEvent}
                             ref="textarea"
-                            defaultValue={this.state.value}/>
+                            defaultValue={value}/>
                     </Col>
-                    <Col span={11} style={this.state.screenStyle}>
+                    <Col span={11} style={screenStyle}>
                         <div
                             className="hljs"
                             dangerouslySetInnerHTML={{
-                                __html: marked(this.state.value)
+                                __html: marked(value)
                             }}
                         />
                     </Col>

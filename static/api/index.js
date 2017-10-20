@@ -27,5 +27,12 @@ export default {
    */
   userSignUp(param){
     return fetch("user/signUp",param);
+  },
+  /**
+   * 上传md文件
+   * @param  {object} param
+   */
+  uploadFile(param){
+    return fetch("blog/uploadFile",param)
   }
 };

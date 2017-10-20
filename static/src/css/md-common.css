@@ -1,3 +1,13 @@
+/**
+通过设置延时，取消浏览器的黄色背景
+*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-transition-delay: 99999s;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+}
 .markdown-textarea{
   width: 100%;
   min-height: 800px;
@@ -32,6 +42,9 @@ blockquote li {
 code{
   font-family: monospace;  
 }
+ul{
+  font-size: 14px;
+}
 
 hr {
   text-align: left;
@@ -43,28 +56,28 @@ hr {
   border: 0 none;
 }
 
-ul, ol {
+.hljs ul, ol {
   padding: 0;
   padding-left: 24px;
   margin: 0;
 }
-ul{
+.hljs ul{
   list-style: disc
 }
-ol{
+.hljs ol{
   list-style: decimal
 }
-li {
+.hljs li {
   line-height: 24px;
   display: list-item;  
 }
-p, ul, ol {
+.hljs p, .hljs ul, .hljs ol {
   font-size: 16px;
   line-height: 24px;
   margin: 5px 0px;
 }
 
-ol ol, ul ol {
+.hljs ol ol, .hljs ul ul {
   list-style-type: lower-roman;
 }
 
