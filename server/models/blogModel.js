@@ -20,6 +20,7 @@ const blog = {
           WHERE md="${options.md}"`
       let result = await db.query(_sql)
       if (Array.isArray(result) && result.length > 0) {
+          console.log(result[0])
           result = result[0]
       } else {
           result = null

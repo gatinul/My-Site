@@ -130,7 +130,7 @@ class WriteMarkDown extends Component {
                             onCancel={this.hideModal}
                             footer={null}
                             >
-                            <ModalForm />
+                            <ModalForm setModalHide={this.hideModal}/>
                         </Modal>
                         <textarea
                             style={previewStyle}
