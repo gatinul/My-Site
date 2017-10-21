@@ -13,7 +13,6 @@ const blog = {
       return new Promise(function (resolve, reject) {
         const reader = fs.createReadStream(file.path);
         const stream = fs.createWriteStream(path.join(__dirname, newPath, file.name));
-        reader.pipe(stream)
         reader.on('error',(error)=>{
           return resolve({
             success:false,

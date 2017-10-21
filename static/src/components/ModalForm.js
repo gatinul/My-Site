@@ -8,6 +8,8 @@ const Option = Select.Option;
 const confirm = Modal.confirm;
 import api from "../../api/index.js";
 import { browserHistory } from 'react-router';
+import allConfig from '../../../config'
+const url = allConfig.blogUrl
 
 
 
@@ -64,7 +66,7 @@ class PostForm extends Component {
       onOk() {
         self.props.setModalHide()
         self.resetModal()
-        window.open('http://localhost:7002')
+        window.open(url)
       },
       onCancel() {
         self.props.setModalHide()
