@@ -14,18 +14,21 @@ const blog = {
         const reader = fs.createReadStream(file.path);
         const stream = fs.createWriteStream(path.join(__dirname, newPath, file.name));
         reader.on('error',(error)=>{
+          console.log('service:fail')
           return resolve({
             success:false,
             message:'上传失败，读取文件失败',
             error:error
           })
         }).pipe(stream).on('error',(error)=>{
+          console.log('service:fail')
           return resolve({
             success:false,
             message:'上传失败，写入文件失败',
             error:error
           })
         }).on('close',()=>{
+          console.log('service:success')
           return resolve({
             success:true,
             message:'上传成功'

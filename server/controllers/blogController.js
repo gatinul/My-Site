@@ -61,9 +61,11 @@ module.exports = {
         create_time: time.format(new Date())
       })
       if (insertResult) {
+        console.log('插入成功')
         result.success = true
       } else {
         result.message = '插入失败'
+        console.log('插入失败')
       }
       ctx.body = result
     },
