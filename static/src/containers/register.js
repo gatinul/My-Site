@@ -5,7 +5,7 @@ class Register extends React.Component {
   render() {
     return (
       <div style={{  marginTop: "150px" }}>
-        暂不开放
+        <WrappedRegistrationForm />
       </div>
     );
   }
