@@ -1,4 +1,4 @@
-import { Icon, Row, Col, Input, Button, Modal } from  'antd';
+import { Icon, Row, Col, Input, Button, Modal, message } from  'antd';
 import React, { Component, PropTypes } from "react";
 import ReactDOM from "react-dom";
 import marked from 'marked';
@@ -92,10 +92,15 @@ class WriteMarkDown extends Component {
         }
     }
     showModal =() =>{
-        this.setState({
-            visible:true,
-            ModalText:'Content of the modal'
-        })
+        if(localStorage.getItem("name") == 'shixy'){
+            this.setState({
+                visible:true,
+                ModalText:'Content of the modal'
+            })
+        }else{
+            message.error('暂时只对白名单用户开放')
+        }
+        
     }
     handleUploadOk =() =>{
         this.setState({

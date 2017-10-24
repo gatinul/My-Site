@@ -16,6 +16,7 @@ class LoginForm extends Component {
         api.userLogin(values).then(res=> {
           console.log(res);
           if(res.success){
+            localStorage.setItem("name", values.userName)
             browserHistory.push('/home')
           }else{
             Modal.error({
