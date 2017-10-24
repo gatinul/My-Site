@@ -8,7 +8,7 @@ const Option = Select.Option;
 const confirm = Modal.confirm;
 import api from "../../api/index.js";
 import { browserHistory } from 'react-router';
-const allConfig = require('../../../../config/config.js')
+const allConfig = require('../../../config.js')
 const url = allConfig.blogUrl
 
 
